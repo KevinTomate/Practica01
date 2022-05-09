@@ -96,6 +96,30 @@ public class boletos {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+      public double calcularSubTotal(){
+    double subTotal = 0.0;    
+        if(this.tipoViaje==1){ subTotal = this.precio; }
+        else if(this.tipoViaje==2){ subTotal = this.precio * 1.80; }
+        return subTotal;
+    }
+    
+    public double calcularImpuesto(){
+    double impuesto = 0.0;
+        impuesto = this.calcularSubTotal() * 0.16;
+        return impuesto;
+    }
+    
+    public double calcularDescuento(int edad){
+    double descuento = 0.0;
+        if(edad>=60){ descuento = this.calcularSubTotal() * 0.50; }
+        return descuento;
+    }
+    
+    public double calcularTotal(int edad){
+    double total = 0.0;
+        total = this.calcularSubTotal() + this.calcularImpuesto() - this.calcularDescuento(edad);
+        return total;
+    }
     
     
 }
